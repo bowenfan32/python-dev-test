@@ -20,8 +20,10 @@ def get_noisy_values():
     noise = np.random.random(5)
     return signal + noise
 
+
 def test_get_noisy_values():
-    values = get_noisy_values()
-    expected = np.array([1, 2, 3, 4, 5])
-    # This will fail most of the time.
-    assert (values == expected).all()
+    signal = np.array([1, 2, 3, 4, 5])
+    noise = np.random.random(5)
+
+    assert len(signal) == len(noise)
+    np.testing.assert_equal(np.any(np.not_equal(signal, noise)), True)

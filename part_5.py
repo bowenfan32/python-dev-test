@@ -18,6 +18,7 @@ MAX_TIME = 100
 STEP_SIZE = 0.1
 NUM_STEPS = int(MAX_TIME / STEP_SIZE)
 
+
 def get_derivatives(values, time):
     """
     Returns the derivative of the ODE as an array: [dS/dt, dI/dt, dR/dt]
@@ -45,4 +46,17 @@ for t_idx, t in enumerate(times):
 
     # Solve the equation here, filling out `results`
 
+    # based off the equation y1 = y0 + h * f(x)'
+    results[t_idx] = results[t_idx - 1] + get_derivatives(results[t_idx - 1], t).dot(STEP_SIZE)
+
 # Plot the results as a function of time for S, I, R respectively
+flipped = np.swapaxes(results, 0, 1)
+s = flipped[0]
+r = flipped[1]
+i = flipped[2]
+
+plt.plot(times, s)
+plt.plot(times, r)
+plt.plot(times, i)
+plt.savefig('part_5.png')
+plt.show()

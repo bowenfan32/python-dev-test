@@ -25,5 +25,18 @@ def merge_dicts(src: dict, dest: dict):
 
     return dest
 
+
 def test_merge_dicts():
     """Your code here"""
+
+    # test merge
+    a = {'dict1': '1'}
+    b = {'dict2': '2'}
+    merged_dict = merge_dicts(a, b)
+    assert len(merged_dict) == 2
+
+    # test deep merge
+    c = {'dict1': {'item1': 'dog', 'item3': 'kangaroo'}}
+    d = {'dict1': {'item2': 'cat', 'item3': 'kangaroo'}}
+    merged_dict = merge_dicts(c, d)
+    assert len(merged_dict['dict1']) == 3

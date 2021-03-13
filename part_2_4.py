@@ -19,3 +19,19 @@ import matplotlib.pyplot as plt
 CSV_FILE = "data/report_2_3.csv"  # Same CSV file as the last question
 
 # Your code goes here
+df = pd.read_csv('data/report_2_3.csv')
+
+group_1 = df.loc[df['age'] == 30]
+group_1_sum = group_1['daily_infections'].cumsum()
+
+group_2 = df.loc[df['age'] == 45]
+group_2_sum = group_2['daily_infections'].cumsum()
+
+zipped_lists = zip(group_1_sum, group_2_sum)
+
+x1 = group_1['time']
+y1 = [x + y for (x, y) in zipped_lists]
+
+plt.plot(x1, y1)
+plt.savefig('part_2_4.png')
+plt.show()

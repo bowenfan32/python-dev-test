@@ -15,3 +15,27 @@ import matplotlib.pyplot as plt
 CSV_FILE = "data/report_2_3.csv"
 
 # Your code goes here
+df = pd.read_csv('data/report_2_3.csv')
+
+group_1 = df.loc[df['age'] == 0]
+x1 = group_1['time']
+y1 = group_1['daily_infections']
+plt.plot(x1, y1, label="age 0")
+
+group_2 = df.loc[df['age'] == 15]
+x2 = group_2['time']
+y2 = group_2['daily_infections']
+plt.plot(x2, y2, label="age 15")
+
+group_3 = df.loc[df['age'] == 30]
+x3 = group_3['time']
+y3 = group_3['daily_infections']
+plt.plot(x3, y3, label="age 30")
+
+group_4 = df.loc[df['age'] == 45]
+x4 = group_4['time']
+y4 = group_4['daily_infections']
+plt.plot(x4, y4, label="age 45")
+
+plt.savefig('part_2_3.png')
+plt.show()
